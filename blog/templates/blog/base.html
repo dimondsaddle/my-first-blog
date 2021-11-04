@@ -8,15 +8,21 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    
 </head>
 
 <body>
     <header class="page-header">
         <div class="container">
             {% if user.is_authenticated %}
+                
+            <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
             <a href="{% url 'post_new' %}" class="top-menu">
-                {% include './icons/file-earmark-plus.svg' %}
-            </a>
+            
+                {% include './icons/file-earmark-plus.svg' %}</a>
+            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span>{% include './icons/exclamation.svg' %}</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="top-menu">login</a>
             {% endif %}
             <h1><a href="/">Django Girls Blog</a></h1>
         </div>
